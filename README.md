@@ -1,3 +1,7 @@
+
+Referencia de configuração
+https://www.youtube.com/watch?v=Ni26hv-FTeg&t=384s
+
 kubectl get svc -n argocd
 
 
