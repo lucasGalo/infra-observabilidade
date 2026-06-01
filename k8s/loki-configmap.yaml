@@ -12,7 +12,11 @@ data:
 
     ingester:
       wal:
-        enabled: false   # WAL desativado para evitar erro de mkdir /wal
+        enabled: false
+      lifecycler:
+        ring:
+          kvstore:
+            store: inmemory   # usa ring em memória, sem Consul
 
     schema_config:
       configs:
@@ -26,7 +30,7 @@ data:
 
     storage_config:
       boltdb:
-        directory: /tmp/loki   # usa diretório temporário dentro do contêiner
+        directory: /tmp/loki
 
     limits_config:
       enforce_metric_name: false
