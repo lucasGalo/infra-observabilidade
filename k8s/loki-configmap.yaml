@@ -6,12 +6,13 @@ metadata:
 data:
   loki.yml: |
     auth_enabled: false
+
     server:
       http_listen_port: 3100
 
     ingester:
       wal:
-        enabled: false
+        enabled: false   # WAL desativado para evitar erro de mkdir /wal
 
     schema_config:
       configs:
@@ -25,4 +26,9 @@ data:
 
     storage_config:
       boltdb:
-        directory: /tmp/loki
+        directory: /tmp/loki   # usa diretório temporário dentro do contêiner
+
+    limits_config:
+      enforce_metric_name: false
+      reject_old_samples: true
+      reject_old_samples_max_age: 168h
