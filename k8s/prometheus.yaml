@@ -22,13 +22,14 @@ spec:
             - containerPort: 9090
           volumeMounts:
             - name: prometheus-config
-              mountPath: /etc/prometheus
+              mountPath: /etc/prometheus/prometheus.yml
+              subPath: prometheus.yml
             - name: prometheus-data
               mountPath: /prometheus
       volumes:
         - name: prometheus-config
-          persistentVolumeClaim:
-            claimName: prometheus-config-pvc
+          configMap:
+            name: prometheus-config
         - name: prometheus-data
           persistentVolumeClaim:
             claimName: prometheus-data-pvc
@@ -43,17 +44,6 @@ spec:
   ports:
     - port: 9090
       targetPort: 9090
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: prometheus-config-pvc
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 512Mi
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
