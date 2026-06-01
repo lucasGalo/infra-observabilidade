@@ -6,8 +6,10 @@ metadata:
 data:
   loki.yml: |
     auth_enabled: false
+
     server:
       http_listen_port: 3100
+
     ingester:
       lifecycler:
         address: 127.0.0.1
@@ -19,14 +21,11 @@ data:
       max_chunk_age: 1h
       chunk_target_size: 1048576
       chunk_retain_period: 30s
-      wal:
-        enabled: true
-        dir: /var/loki/wal
 
     schema_config:
       configs:
         - from: 2020-10-24
-          store: boltdb-shipper
+          store: boltdb
           object_store: filesystem
           schema: v11
           index:
@@ -34,12 +33,8 @@ data:
             period: 24h
 
     storage_config:
-      boltdb_shipper:
-        active_index_directory: /var/loki/index
-        cache_location: /var/loki/cache
-        shared_store: filesystem
-      filesystem:
-        directory: /var/loki/chunks
+      boltdb:
+        directory: /tmp/loki
 
     limits_config:
       enforce_metric_name: false
