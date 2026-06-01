@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/lucasGalo/lab-observabilidade.git'
+    repoURL: 'https://github.com/lucasGalo/infra-observabilidade.git'
     targetRevision: main
     path: k8s
   destination:

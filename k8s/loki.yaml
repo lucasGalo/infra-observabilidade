@@ -22,10 +22,11 @@ spec:
           volumeMounts:
             - name: loki-config
               mountPath: /etc/loki
+              subPath: loki.yml
       volumes:
         - name: loki-config
-          persistentVolumeClaim:
-            claimName: loki-config-pvc
+          configMap:
+            name: loki-config
 ---
 apiVersion: v1
 kind: Service
@@ -37,14 +38,3 @@ spec:
   ports:
     - port: 3100
       targetPort: 3100
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: loki-config-pvc
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 512Mi
