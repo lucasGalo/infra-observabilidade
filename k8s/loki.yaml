@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: loki
+  namespace: argocd
 spec:
   replicas: 1
   selector:
@@ -21,7 +22,7 @@ spec:
             - containerPort: 3100
           volumeMounts:
             - name: loki-config
-              mountPath: /etc/loki
+              mountPath: /etc/loki/loki.yml
               subPath: loki.yml
       volumes:
         - name: loki-config
@@ -32,6 +33,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: loki
+  namespace: argocd
 spec:
   selector:
     app: loki
