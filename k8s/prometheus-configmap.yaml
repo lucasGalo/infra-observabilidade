@@ -21,6 +21,6 @@ data:
       - job_name: 'springboot-rabbitmq'
         metrics_path: "/actuator/prometheus"
         static_configs:
-          - targets: ['springboot-rabbitmq:8282']
+          - targets: ['springboot-rabbitmq:8082']
             labels:
               application: "springboot-rabbitmq"
