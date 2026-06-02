@@ -16,3 +16,14 @@ kubectl port-forward svc/prometheus -n argocd --address 0.0.0.0 9090:9090 &
 ps aux | grep kubectl
 
 
+kubectl get deployments -n argocd
+
+
+kubectl delete deployment prometheus -n argocd
+
+kubectl delete service prometheus -n argocd
+
+
+
+
+

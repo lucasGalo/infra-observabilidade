@@ -24,3 +24,10 @@ data:
           - targets: ['springboot-rabbitmq:8082']
             labels:
               application: "springboot-rabbitmq"
+
+      - job_name: 'api-teste'
+        metrics_path: "/actuator/prometheus"
+        static_configs:
+          - targets: ['api-teste:8383']
+            labels:
+              application: "api-teste"
