@@ -10,13 +10,11 @@ data:
     server:
       http_listen_port: 3100
 
-    ingester:
-      wal:
-        enabled: false
-      lifecycler:
-        ring:
-          kvstore:
-            store: inmemory
+    common:
+      path_prefix: /loki
+      ring:
+        kvstore:
+          store: inmemory
 
     schema_config:
       configs:
@@ -47,4 +45,4 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
+      storage: 2Gi

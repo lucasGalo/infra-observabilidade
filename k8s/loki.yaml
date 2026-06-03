@@ -17,9 +17,12 @@ spec:
         - name: loki
           image: grafana/loki:2.8.0
           args:
-            - '--config.file=/etc/loki/loki.yml'
+            - '-config.file=/etc/loki/loki.yml'
+            - '-target=all'
           ports:
             - containerPort: 3100
+          securityContext:
+            runAsUser: 0
           volumeMounts:
             - name: loki-config
               mountPath: /etc/loki/loki.yml
