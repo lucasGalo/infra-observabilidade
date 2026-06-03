@@ -24,10 +24,14 @@ spec:
             - name: loki-config
               mountPath: /etc/loki/loki.yml
               subPath: loki.yml
+            - name: loki-data
+              mountPath: /etc/loki
       volumes:
         - name: loki-config
           configMap:
             name: loki-config
+        - name: loki-data
+          emptyDir: {}
 ---
 apiVersion: v1
 kind: Service
