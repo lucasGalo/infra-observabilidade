@@ -16,7 +16,7 @@ data:
       lifecycler:
         ring:
           kvstore:
-            store: inmemory   # usa ring em memória, sem Consul
+            store: inmemory
 
     schema_config:
       configs:
