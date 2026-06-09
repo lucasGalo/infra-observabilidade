@@ -41,6 +41,6 @@ data:
       - job_name: 'rabbitmq-management'
         metrics_path: "/metrics"
         static_configs:
-          - targets: ['rabbitmq:15672']
+          - targets: ['rabbitmq:15692']
             labels:
               application: "rabbitmq-management"
