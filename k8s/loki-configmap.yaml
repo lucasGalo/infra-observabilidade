@@ -59,4 +59,4 @@ spec:
   resources:
     requests:
       storage: 2Gi
-  volumeName: loki-pv   # associa diretamente ao PV
+  volumeName: loki-pvc   # associa diretamente ao PV
