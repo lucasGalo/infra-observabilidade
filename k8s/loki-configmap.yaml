@@ -35,7 +35,6 @@ data:
       reject_old_samples: true
       reject_old_samples_max_age: 168h
 ---
-
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -45,6 +44,7 @@ spec:
     storage: 2Gi
   accessModes:
     - ReadWriteOnce
+  storageClassName: ""   # sem StorageClass, para uso estático
   hostPath:
     path: /data/loki
 ---
@@ -59,4 +59,5 @@ spec:
   resources:
     requests:
       storage: 2Gi
-  volumeName: loki-pvc   # associa diretamente ao PV
+  storageClassName: ""   # precisa bater com o PV
+  volumeName: loki-pvc    # corrige o nome do PV

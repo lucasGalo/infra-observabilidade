@@ -28,7 +28,7 @@ spec:
               mountPath: /etc/loki/loki.yml
               subPath: loki.yml
             - name: loki-data
-              mountPath: /etc/loki
+              mountPath: /data/loki   # monta o diretório persistente
       volumes:
         - name: loki-config
           configMap:
