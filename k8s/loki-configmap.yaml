@@ -60,4 +60,4 @@ spec:
     requests:
       storage: 2Gi
   storageClassName: ""   # precisa bater com o PV
-  volumeName: loki-pvc    # corrige o nome do PV
+  volumeName: loki-pv    # corrige o nome do PV
