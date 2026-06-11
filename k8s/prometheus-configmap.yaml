@@ -44,3 +44,10 @@ data:
           - targets: ['rabbitmq:15692']
             labels:
               application: "rabbitmq-management"
+
+      - job_name: 'spring3-cassandra'
+        metrics_path: "/actuator/prometheus"
+        static_configs:
+          - targets: ['spring3-cassandra:8080']
+            labels:
+              application: "spring3-cassandra"
