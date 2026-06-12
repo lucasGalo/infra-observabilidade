@@ -54,9 +54,9 @@ spec:
     storage: 2Gi
   accessModes:
     - ReadWriteOnce
-  storageClassName: ""   # sem StorageClass, para uso estático
+  storageClassName: ""   # estático
   hostPath:
-    path: /data/loki
+    path: /data/loki-pv   # ajustei para não conflitar com o mountPath
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -70,5 +70,4 @@ spec:
     requests:
       storage: 2Gi
   storageClassName: ""   # precisa bater com o PV
-  volumeName: loki-pv    # corrige o nome do PV
-
+  volumeName: loki-pv    # vincula ao PV correto
