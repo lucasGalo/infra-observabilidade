@@ -13,7 +13,9 @@ data:
       filename: /tmp/positions.yaml
 
     clients:
-      - url: loki:3100
+      # Se Promtail estiver no mesmo namespace (argocd), pode usar loki:3100
+      # Se estiver em outro namespace, use o FQDN abaixo:
+      - url: http://loki:3100/loki/api/v1/push
 
     scrape_configs:
       - job_name: spring3-cassandra
@@ -24,3 +26,22 @@ data:
               job: spring3-cassandra
               app: spring3-cassandra
               __path__: /var/log/containers/*spring3-cassandra*.log
+
+      # Exemplo para coletar todos os pods do namespace argocd
+      - job_name: kubernetes-pods
+        kubernetes_sd_configs:
+          - role: pod
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_label_app]
+            target_label: app
+          - source_labels: [__meta_kubernetes_namespace]
+            target_label: namespace
+          - source_labels: [__meta_kubernetes_pod_name]
+            target_label: pod
+          - source_labels: [__meta_kubernetes_container_name]
+            target_label: container
+          - source_labels: [__meta_kubernetes_pod_label_job]
+            target_label: job
+          - source_labels: [__meta_kubernetes_pod_annotation_promtail_path]
+            target_label: __path__
+            regex: (.+)
