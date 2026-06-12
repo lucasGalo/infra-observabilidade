@@ -56,7 +56,7 @@ spec:
     - ReadWriteOnce
   storageClassName: ""   # estático
   hostPath:
-    path: /data/loki-pv   # ajustei para não conflitar com o mountPath
+    path: /data/loki   # ajustei para não conflitar com o mountPath
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
