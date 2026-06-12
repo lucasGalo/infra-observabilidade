@@ -15,7 +15,7 @@ data:
     clients:
       # Se Promtail estiver no mesmo namespace (argocd), pode usar loki:3100
       # Se estiver em outro namespace, use o FQDN abaixo:
-      - url: http://localhost:3100/loki/api/v1/push
+      - url: http://localhost:3100
 
     scrape_configs:
       - job_name: spring3-cassandra
