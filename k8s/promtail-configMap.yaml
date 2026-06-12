@@ -19,7 +19,7 @@ data:
       - job_name: spring3-cassandra
         static_configs:
           - targets:
-              - localhost
+              - spring3-cassandra
             labels:
               job: spring3-cassandra
               app: spring3-cassandra
