@@ -43,8 +43,11 @@ metadata:
   name: loki
   namespace: argocd
 spec:
+  type: NodePort   # muda de ClusterIP para NodePort
   selector:
     app: loki
   ports:
-    - port: 3100
-      targetPort: 3100
+    - port: 3100          # porta interna do serviço
+      targetPort: 3100    # porta do container
+      nodePort: 30100     # porta exposta no Node (entre 30000-32767)
+
