@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
 data:
   loki.yml: |
-    auth_enabled: true
+    auth_enabled: false
 
     server:
       http_listen_port: 3100
@@ -31,10 +31,6 @@ data:
           index:
             prefix: index_
             period: 24h
-          chunks:
-            prefix: chunk_
-            period: 24h
-          replication_factor: 1
 
     storage_config:
       boltdb_shipper:
