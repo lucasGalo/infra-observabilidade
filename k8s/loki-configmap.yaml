@@ -71,3 +71,4 @@ spec:
       storage: 2Gi
   storageClassName: ""   # precisa bater com o PV
   volumeName: loki-pv    # corrige o nome do PV
+
