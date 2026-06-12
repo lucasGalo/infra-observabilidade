@@ -9,26 +9,40 @@ data:
 
     server:
       http_listen_port: 3100
+      grpc_listen_port: 9095
 
-    common:
-      path_prefix: /loki
-      ring:
-        kvstore:
-          store: inmemory
+    ingester:
+      lifecycler:
+        ring:
+          kvstore:
+            store: inmemory
+          replication_factor: 1
+      chunk_idle_period: 5m
+      max_chunk_age: 1h
+      chunk_target_size: 1048576
+      chunk_retain_period: 30s
 
     schema_config:
       configs:
         - from: 2020-10-24
-          store: boltdb
+          store: boltdb-shipper
           object_store: filesystem
           schema: v11
           index:
             prefix: index_
             period: 24h
+          chunks:
+            prefix: chunk_
+            period: 24h
+          replication_factor: 1
 
     storage_config:
-      boltdb:
-        directory: /tmp/loki
+      boltdb_shipper:
+        active_index_directory: /data/loki/index
+        cache_location: /data/loki/cache
+        shared_store: filesystem
+      filesystem:
+        directory: /data/loki/chunks
 
     limits_config:
       enforce_metric_name: false
