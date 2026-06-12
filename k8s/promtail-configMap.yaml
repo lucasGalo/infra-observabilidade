@@ -13,7 +13,7 @@ data:
       filename: /tmp/positions.yaml
 
     clients:
-      - url: http://loki:3100/loki/api/v1/push
+      - url: loki:3100
 
     scrape_configs:
       - job_name: spring3-cassandra
